@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling events with JS</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="index.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Handling Events with JS</h1>
+    </header>
+    <main>
+        <h2>Introduction</h2>
+        <p>Existen 3 formas de <i>manejar</i> los eventos dentro de una computadora:</p>
+        <ol>
+            <li>Por cada tecla, tener un manejador que esté escuchando pasivamente e informar al sistema de cuando ocurra una acción.
+            Esta forma es la que se utilizaba antes en los ordenadores antiguos y no es una buena forma de controlar, debido a que se podría 
+            perder alguna pulsación en los periodos donde con programas que requieran mucho tiempo de computación.</li>
+            <li><b>Sondeo: </b>La segunda forma, es guardar en una lista de la memoria, todos los eventos que vayan ocurriendo. Es denominada <i>sondeo</i>. 
+            Esta manera provoca al programa a guardar en todo momento un espacio de memoria para la lista de eventos. Es recomendable evitar este comportamiento 
+            si es posible.</li>
+            <li><b>Manejadores: </b>Hoy en día, y siendo el mejor mecanismo para el control de eventos, son los llamados manejadores de eventos. Estos manejadores avisan al sistema
+            únicamente cuando el evento que se está escuchando es lanzado.</li>
+        </ol>
+        
+        <div class="content-warning">
+            <p>Es importante retocar que cada manejador es insertado DENTRO DE UN CONTEXTO O ELEMENTO DEL DOM. Por ejemplo, 
+            si se inserta un evento dentro de la propiedad <code class="bold">window</code>, el evento será interpretado exclusivamente dentro 
+            de la ventana del navegador.</p>
+        </div>
+    </main>
+</body>
+</html>

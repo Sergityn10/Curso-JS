@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto Date (Fecha)</title>
+    <style>
+        .negrita{
+            font-weight: bold;
+        }
+        .precaucion{
+            color: red;
+            background-color: yellow;
+            width: fit-content;
+            border: solid rgba(0, 0, 0, 0.411);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        table{
+            border: solid;
+            border-collapse: collapse;
+            & th,tr,td{
+                border: solid;
+                padding: 8px;
+            }
+            & thead{
+                position: sticky;
+                left: 0;
+                top: 0;
+                background-color: white;
+            }
+        
+    
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>OBJETO DATE (FECHA)</h1>
+        <p>La clase <code>Date</code> es natural de JS y viene predefinida ya en este lenguaje de programación. Si llamas al constructor de esta clase, sin ningún parametro, obtendrás la fecha 
+        actual. </p>
+        <p class="precaucion"><span>!WARNING¡:</span> JavaScript usa una convención en donde los números de los meses comienzan en 0, sin embargo, los días de los meses comienzan en uno.</p>
+        <p>Esta clase guarda <span class="negrita">marcas de tiempo</span> en milisegundos desde el nacimiento LINUX o "tiempo de Linux", creado en <time datetime="1970">1970</time> en la zona horaria UTC. Puedes usar
+        números negativos para representar instantes de tiempo anteriores a 1970. Existe una función <code>getTime()</code> que te devuelve el número de milisegundos del "Tiempo Linux".</p>
+        <section>
+            <h2>Constructores y funciones sobre Date</h2>
+            <p>Se pueden crear una clase Date de distintas maneras, dependiendo del númoro de parámetros que le pasemos. </p>
+            
+            <ul>
+                <li><span>Ningún parámetro:</span> Obtendremos la fecha actual de ese momento.</li>
+                <li><span class="negrita">1 parámetro:</span> Este parametro debe ser el número de milisegundos del "Tiempo Linux" y se obtendrá la fecha referente a ese tiempo de milisegundos.</li>
+                <li><span class="negrita"> 2 o más parámetros:</span> Si añadimos 2 o más, desde el primero hasta el último, se correspondá al año, més, día, hora, minutos y milisegundos de la fecha
+                que se quiere representar. Estos últimos 4 parámetros son opcionales. Si no se especifica alguno, se inicializarán a 0. Se obtendrá, la fecha correspondiente a dichos parámetros que 
+                se les pase.</li>
+
+            </ul>
+            <script>
+                let ahora = new Date()
+                ahora.get
+                console.log(`Fecha actual -> ${ahora}`)
+                console.log(ahora)
+                let milisegundos = ahora.getTime()
+                let fechaMilisegundos = new Date(milisegundos)
+                console.log(`Fecha en milisegundos -> ${fechaMilisegundos}`)
+                let fecha = new Date(2024, 0, 1, 10) //El 0 se refiere al mes de Enero
+                console.log(`Fecha -> ${fecha}`)
+            </script>
+
+            <h3>FUNCIONES</h3>
+            <p>Todas las funciones mostradas a continuación, devuelven como resultado, un <span class="negrita">número</span></p>
+            <table>
+                <thead>
+                    <th>Función</th>
+                    <th>Descripción</th>
+                    <th>Ejemplo</th>
+                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>getTime</td>
+                        <td>Devuelve el número de milisegundos del "Tiempo Linux" correspondiente a la fecha actual, guardada en la instancia de la clase <code>Date</code>.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>getFullYear</td>
+                        <td>Devuelve el año de la fecha guardada en la instancia de la clase <code>Date</code>
+
+                    </tr>
+                    <tr>
+                        <td>getMonth</td>
+                        <td>Devuelve el mes de la fecha guardada en la instancia de la clase <code>Date</code>
+                    </tr>
+                    <tr>
+                        <td>getDay</td>
+                        <td>Devuelve el <span class="negrita">día de la semana</span> de la fecha guardada en la instancia de la clase <code>Date</code></td>
+
+                    </tr>
+                    <tr>
+                        <td>getDate</td>
+                        <td>Devuelve el <span class="negrita">día del mes</span>  de la fecha guardada en la instancia de la clase <code>Date</code>
+                    </tr>
+                    <tr>
+                        <td>getMinutes</td>
+                        <td>Devuelve los <span class="negrita">minutos</span> de la fecha guardada en la instancia de la clase <code>Date</code></td>
+                    </tr>
+                    <tr>
+                        <td>getSeconds</td>
+                        <td>Devuelve los <span class="negrita">segundos</span> dela fecha guardada en la instancia de la clase <code>Date</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>getMilliseconds</td>
+                        <td>Devuelve los <span class="negrita">milisegundos</span>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <p>Por cada función descrita en la tabla anterior, existe una función <span  class="negrita">set</span> relacionada con su función y, además, una función relacionada con la zona 
+            horaria <dfn title="Universal Coordinal Time">UTF</dfn></p>
+
+
+        </section>
+    </main>
+</body>
+</html>

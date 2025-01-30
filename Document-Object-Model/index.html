@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model (DOM)</title>
+</head>
+<body>
+    <header>
+        <h1>Document Object Model</h1>
+    </header>
+    <main>
+        <p>Existen distinto tipos de elementos dentro de documento HTML. </p>
+        <ol>
+            <li><code>documentElement:</code> Hace referencia a cualquier elemento del documento HTML. 
+            Esta clase, todas tienen las propiedades <code>head</code> y <code>body</code></li>
+            <ul>
+                <li><code>nodeType</code>: Devuelve el número del tipo de nodo que se trata.</li>
+            </ul>
+        </ol>
+
+        <section>
+            <h2>Funciones para moverse por el DOM</h2>
+            <p>Es muy importante para un desarrollador, tener los conocimientos para conocer las funciones específicas para 
+            desenvolverse por el DOM.</p>
+            <p>JS tiene unas funciones propias de cada elemento que nos proporciona la facilidad para alcanzar el objetivo de esta 
+            sección. Estas funciones son:</p>
+            <ol>
+                <li><code>childNodes:</code> Devuelve la lista de objectos de los elemento hijos.</li>
+                <script>
+                    
+
+                </script>
+                <li><code>children:</code> Devuelve una lista de <code>Node</code> del elemento donde se está llamando.</li>
+                <li><code>firstChildren y lastChildren</code>: Devuelven el primer y último nodo hijo del elemento en el que se está llamando. 
+                Devuelve <b>null</b>, si no tiene nodos hijos.</li>
+                <li><code>nextSibling y previousSibling</code>: Devuelve el siguiente o anterior elemento que tiene el mismo padre, respectivamente. En caso 
+                de que sea el primer o último hijo, respectivamente, devolverán <code>null</code></li>
+            </ol>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+Ejercicio 1- Crear mis propias funciones de array con devoluciones de llamadas. Me proporcionará más conocimientos sobre el funcionamiento de callbacks y programación asincrónica.
+    1.1-Filter
+    1.2-Map
+    1.3-Reduce
+    1.4-Some
+    1.5-Every
+    1.6-Find
+    1.7-Sort
+    1.8-IndexOf
+    

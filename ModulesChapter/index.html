@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicación de los modulos en JS</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="common-js.js"></script>
+    <script type="module" src="ecma-script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Chapter 11: Modules</h1>
+    </header>
+    <main>
+        <p>El objetivo de todo programador es crear un código limpio y con el menor número de dependencias posibles. Para ello, se empezarón a organizar los códigos en <span class="negrita">módulos</span>,
+        que son archivos separados que contienen código JavaScript. Cada módulo se le debe identificar 2 partes fundamentales, característicos de estos:</p>
+        <ol>
+            <li>Sus dependencias: Se trata de otras partes de código, las cuales, el funcionamiento del módulo depende de ellos.</li>
+            <li>Su interfaz: Se trata del cuerpo del módulo. Es decir, el código en sí.</li>
+        </ol>
+        <p>Los módulos es una buena forma de no repetir código y, por lo tanto, cumplir con la regla <abbr title="Don´t Repeat Yourself">DRY</abbr>. Además, cada módulo debe de especificar aquellos
+        parámetros, métodos y funciones que se van a querer "exportar" para que el sistema de módulos pueda recoger dicha vinculación correctamente. La forma de importar y exporta depende de cada 
+        sistema de modulos que se quiera utilzar. </p>
+        <p>Al principio, este sistema de módulos no existían, pero con el paso del tiempo, JS ha ido incorporando formas de modulado y los programadores, también, se debían apañar como sea. 
+        Por esta razón, a lo largo del tiempo, han existido distintas formalidades de establecer un sistema de módulos:</p>
+        <ol>
+            <li>Sistema antiguo:</li>
+            <li>CommonJS: </li>
+            <li>ECMASCRIPT modules: Es la formalidad y el sistema de módulos que se está utilizando hoy en día. Se utiliza con la palabra clave "<code class="negrita">import ... from ... </code>. Para 
+            exportar el método o función deseado, se debe establecer la palabra clave <code class="negrita">export</code> delante de esta. También, se pueden exportar constantes, parámetros o clases. <br> 
+            Para especificar la parte del código fundamental del módulo, es decir, su vinculación principal, se debe especificar con la palabra clave <code class="negrita">default</code>. De esta forma, si 
+            realizar una importación sin llaves ni nada, estarás obteniendo la vinculación principal, es decir, la vinculación <code>default.</code></li>
+        </ol>
+        <section>
+            <h2>Empaquetadores</h2>
+            <p>Los empaquetadores son herramientas que permiten agrupar varios módulos en un solo archivo. Esto se hace para que el navegador pueda cargar el código de manera
+            más rápida y eficiente. Algunos de los empaquetadores más populares
+            son Webpack y Rollup.</p>
+        </section>
+        <section>
+            <h2>Sistema de paquetes</h2>
+            <p>JavaScript ofrece un sistema de publicación e instalación de paquetes llamada <span class="negrita">NPM</span>. NPM ofrece una infinidad de paquetes, tanto útiles, como inútiles, 
+            que puedes utilizar instalandolos en tu proyecto como <span class="cursiva">dependencias</span>. Para instalarlo se deberá especificar, escribiendo en tu consola de comandos el siguiente
+            script:</p>
+            <code>npm install "paquete"</code>
+            <p>Si desea instalarlo de forma global en tu ordenador, deberás añadir el comando <code>-g</code>, como se ve en el siguiente ejemplo:</p>
+            <code>npm install -g "paquete"</code>
+            
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación asincrónica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Programación asincrónica</h1>
+
+    </header>
+    <main>
+        <p>Hoy en día, la mayoría de los ordenadores personales (PC) realizan sus funciones utilzando el <span class="cursiva">procesador</span>, la mayor característica del ordenador para 
+        obtener y ejecutar código de datos. El procesador tiene el poder de realizar <span class="negrita">programación asincrónica</span>. </p>
+        <p>La <span class="negrita">programación asincrónica</span> se caracteriza por la realización de tareas de forma simultanea. Es decir, que se pueden realizar múltiples métodos a la vez, 
+        sin tener que esperar a que acabe cada uno. Para esto, los procesadores <span class="cursiva">planifican</span> sus tareas para poder no tener que esperar el mayor tiempo posible. 
+        Crean hilos (threads), en el que cada uno se ocupa de realizar una funcionalidad, y una vez que todas terminas, juntas sus resultados. De esta manera, se ahorra tiempo de ejecución. </p>
+
+        <section>
+            <h2>¿Qué es un código sincrónico?</h2>
+            <p>Un código sincrónico es un código que se ejecuta de manera secuencial. Es decir, que se ejecuta paso a paso, sin poder realizar otras tareas mientras se ejecuta una tarea. </p>
+            <p>En códigos y proyectos pequeños, puede que no sean tan necesarios, pero una vez que quieres implementar proyectos más ambiciosos, no te puedes permitir el hecho de hacer esperar 
+            a los usuarios. Es por eso, que en funciones que necesitan tiempo en completarse, como request o peticiones a un servidor o API, cálculos complejos, etc .... es preferible utilizar ese 
+            tiempo de espera para que nuestro proceso, ordenador o servidor, vaya terminando otras tareas mientras se espera a que se finalice las demás. Así ganamos tiempo y eficiencia. </p>
+        </section>
+
+        <p>En JS, existen diferentes formas de realizar funciones y métodos asincrónicos: </p>
+        <ul>
+            <li><a href="#callback" class="negrita">Callbacks o devolución de llamadas:</a> Se trata de, tal como dice su nombre, establecer como parámetro de una función, una instancia de una función, 
+            la cual, será llamada una vez que la función principal acabe. Pero también es posible utilzar dicha función dentro del cuerpo de la función como una utilidad más. </li>
+            <li><a href="#promises" class="negrita">Promises:</a> Una de las desventajas de los callback, es que se trata de una sintaxis bastante fea y difícil de entender cuando se utilzan controladores 
+            de errores y funciones asíncronicas anidadas. Para solucionar esto, JS incorporó una nueva clase llamada <code class="negrita">Promises</code>, una nueva forma de procesar código 
+            asincrónico. </li>
+            <li><a href="#async-await" class="negrita">Async/Await:</a> Es una forma más sencilla de utilizar promesas, ya que proporciona una sintaxis muy parecida a código sincrónico y más sencilla de enteneder, pero manteniendo la verdadera esencia de las promesas.
+            </li>
+        </ul>
+        <section id="callback">
+            <h2>Devolución de llamadas (CALLBACKS)</h2>
+            <p>JS tiene distintas formas de programación asincrónica. Una de ellas es mediantes las <span class="negrita">devoluciones de llamadas o callbacks </span>. Su explicacion es la 
+            siguiente.</p>
+            <p>Los callbacks son instancias de funciones que se pasan a una función para que, una vez se termine la función principal, nuestro "callback" sea llamado y devuelva la solución de este. 
+            Pero también es posible utilizar nuestro callback dentro del cuerpo de la función principal, como si se tratase de una función normal y corriente. Es una de las ventajas de estos métodos.</p>
+        </section>
+
+        <section id="promises">
+            <h2>Promises</h2>
+            <p>Existen distintas maneras de crear <code>Promises</code> en JS. </p>
+            <ul>
+                <li><span class="negrita">Constructor Promises</span>: La forma más sencilla es mediante el constructor normal del objeto <code>Promises</code>. Pero hay que decir que ofrece una interfaz
+                bastante incómoda. Esto es por que espera como <span class="negrita">único parámetro</span> un callback, el cual se ejecutará una vez que se crea el objeto, y utilizará la función para resolver
+                y devolver el valor del callback.</li>
+                <script>
+                    console.log("Ejemplo de creación de promesas a partir de su constructor")
+                    let promesa = new Promise((resolve, reject) => {
+                        resolve("Hola, soy una promesa")
+                        })
+                    promesa.then((text)=>console.log(text))
+                    console.log(promesa)
+                    let promesaReject = new Promise((resolve,reject)=> reject("Hola, soy una promesa con un reject"))
+                    promesaReject.then((rej)=>console.log(rej))
+                </script>
+                <li><code class="negrita">Promises.resolve(code)</code>: Esta es una manera más cómoda y sencilla de crear promesas. Esta función envuelve la función o código dentro de una promesa. 
+                Si se trata de una promesa, la devuelve sin más, no hace nada. </li>
+                <script>
+                    console.log("Ejemplo de creación de una promesa con Promises.resolve")
+                    let promesaResolve = Promise.resolve("Hola, soy una promesa creado a partir de Promise.resolve")
+                    promesaResolve.then((text)=>console.log(text))
+                    console.log(promesaReject)
+                </script>
+            </ul>
+
+        </section>
+
+        <section id="async-await">
+            <h2>Async/Await</h2>
+            <p>Se trata de una sintaxis más amena y fácil de entender y que se parece a la sintaxis de un código síncrono, pero sin perder las características de lo asíncrono. Además, es como si 
+            construyeras Promesas de una forma muy sencilla. Para crear funciones <code>async</code>, es necesario establecer la palabra clave delante de la función. </p>
+            <p>Para utilizar <code>await</code>, es necesario que la función sea <code>async</code>. La funcionalidad await provoca que se debera de realizar una espera, una promesa, de dicho 
+            código. Una vez que la promesa a terminado, devolverá los mismos parámetros que como si se utilizase los métodos <code>.then() o .catch()</code>. Es decir, producirá una respuesta ya 
+            sea un valor o un error. </p>
+            <p>Se producen los mismos valores o similares que si se utilizase la forma anterior, con <code>.then() y .catch()</code>, solo que la sintaxis es distinta. </p>
+
+        </section>
+
+        <section id="failure">
+            <h2>Manejo de errores</h2>
+            <p>El manejo de errores es esencial para todo tipo de código, ya sea síncrono como asíncrono. Es por eso, que también existen formas y necearias, para controlar de forma adecuada 
+            los errores producidos en códigos asíncronos. </p>
+            <p>Para controlar errores y fallos dentro de los <span class="negrita">callbacks</span>, se utiliza una convención, en la que el primer argumento se utiliza un controlador para errores
+            y el segundo argumento se utiliza para el valor de la función, tal como se puede observar a continuación. </p>
+            <code class="code-container">
+                someAsyncFunction((error, value) => {
+  if (error) handleError(error);
+  else processValue(value);
+});
+            </code>
+            <p>Para el manejo de errores con <code class="negrita">Promesas</code>, se utilizan o la llamada a <code class="negrita">.catch()</code> o llamando al constructor <code class="negrita">Promise.reject()</code>, el cual 
+            devuelve una promesa que se rechaza, y además tiene el mismo comportamiento que <code>Promise.resolve()</code>. </p>
+            
+        </section>
+
+        <section>
+            <h2>Encadenamiento de promesas</h2>
+            <p>Las promesas se pueden ir encadenando, ya que cada manejaoor <code>.then() y .catch()</code>, devuelven en sí otra promesa. Es por eso, que a partir de una promesa, puedes llamar
+            tantas veces como quieras a .then() o .catch(). Pero a partir de esta sintaxis, puede resultar lioso al principio. Es por eso, que se incorporó la tercera forma de creación de promesas
+            con una sintaxis similar a la de los código síncronos. </p>
+            <p>Incluso, es posible volver a llamar controladores .then posterior a una llamada .catch().</p>
+
+        </section>
+
+        <section>
+            <h2>Conclusión</h2>
+            <p>En resumen, el manejo de código asíncrono es una herramient
+            a fundamental para cualquier desarrollador. Aunque puede parecer complicado al principio, con la
+            práctica y la experiencia, se vuelve más fácil y natural. </p>
+            <p>A continuación, se dejará una <span class="negrita">tabla resumen</span> sobre todas las formas de manejo de código asíncrono en JS y su correspondiente controladores de errores.</p>
+            <table>
+                <thead>
+                    <th>Forma asíncrona</th>
+                    <th>Explicación</th>
+                    <th>Controlador de errores</th>
+                    <th>Sintaxis manejadores</th>
+                    <th>Constructores</th>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Callbacks</td>
+                        <td></td>
+                        <td>Primer argumento. El primer argumento de los callbacks suelen ser por convención el controlador de errores.</td>
+                        <td><code>
+                            someAsyncFunction((error, value) => {
+                            if (error) handleError(error);
+                            else processValue(value);
+                            });
+                        </code>
+                            </td>
+                            <td>(argumentos)=> tuCódigo </td>
+                    </tr>
+                    <tr>
+                        <td>Promises</td>
+                        <td>As a shorthand, <code>.then</code> also accepts a rejection handler as a second argument, so you can install both types of handlers in a single method call: .then(acceptHandler, rejectHandler).</td>
+                        <td>La llamada a <code class="negrita">.catch()</code>
+                        o el constructor <code class="negrita">Promise.reject()</code></td>
+                        <td><code>
+                        someAsyncFunction().then((value) => {
+                            processValue(value);
+                        }
+                        .catch((error) => {
+                            handleError(error);
+                            });
+
+                        </code>
+                        </td>
+                        <td>
+                            <ol>
+                                <li>Para crear una promesa general: <code>new Promise((resolve, reject)=>
+                                    if(error) reject(error); else resolve(code);</code></li>
+                                    <li>Para crear una promesa que se resuelve con un valor: <code> Promise.resolve(code)</code></li>
+                                <li>Crear solamente una promesa que devuelva un controlador de error: <code>Promise.reject(erro)</code></li>
+                                <li>A partir del constructor de Promise, crear un manejador de un error: <code>new Promise((_, reject)=> reject(new Error()))</code>. <br> Se puede hacer lo mismo pero 
+                                con <code>Promise.reject()</code></li>
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+    
+    </footer>
+
+</body>
+</html>

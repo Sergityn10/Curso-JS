@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling errors</title>
+    <style>
+        .subrayado{
+            text-decoration: underline;
+        }
+    </style>
+    <script type="module" src="errors.js"></script>
+</head>
+<body>
+    <main>
+    
+    <h1>Chapter 8: Handling Errors</h1>
+    <p>Los errores en programación son considerados <span class="subrayado">"bugs"</span>  y la práctica para intentar encontrar los bugs de nuestro código se denomina <span class="subrayado">"depuración"</span></p>
+
+    <h2>Tipos de errores</h2>
+    <p>Al escribir código, es normal que se produzcan errores inesperados que el propio programador no encuentre la lógica en un primer momento. Es por eso, 
+    
+    que se clasifican en dos categorías:</p>
+
+    <ul>
+        <li>Errores debido a un despiste de lógica al interpretar y llevar del pensamiento a código</li>
+        <li>Errores causados por confundir los pensamientos</li>
+    </ul>
+
+    <p>Este último es el más dificil de encontrar, debido a que en nuestra cabeza pensamos que todo el código funciona correctamente, pero debido 
+    
+    a alguna deficiencia o inexactitud en nuestro aprendizaje, el compilador del lenguaje funciona de una forma diferente a lo que nosotros creemos.</p>
+    <div class="container">
+    
+    <h2>Lenguaje</h2>
+    <p>Cada lenguaje de programación funciona, interpreta y tiene una sintaxis totalmente diferente a las demás. No existe ninguno igual. Es por eso, 
+    que también debemos conocer la forma en la que nuestro lenguaje de programación funciona, compila e interpreta el código. </p>
+    <p>En el ejemplo de JS, se traga bastantes funcionalidades que parecen, a simple vista, inauditos e incomprensibles, por lo que a veces, 
+    es bastante complejo de entender. Pero por eso, es necesario saber las características de cada uno, para conocer sus limitaciones y lo que se puede 
+    hacer con cada uno de ellos.</p>
+    <p>En JS, existen distintas características que deberían dar errores, pero que lo único que devuelven es un valor <span>"undefined"</span>, <span>null</span> o 
+    <span>"NaN"</span>. 
+    <ul>
+        <li>undefined: cuando se intenta acceder a una variable que no existe</li>
+        <li>null: cuando se intenta acceder a una variable que no existe, pero que está inicializada a null </li>
+        <li>NaN: cuando se intenta realizar una operación matemática con un valor que no es un número </li>
+    </ul>
+    </div>
+    <div>
+        <h2>Modo estricto</h2>
+        <p>Para evitar errores, se puede activar el modo estricto en JS, el cual te proporciona una mayor facilidad de encontrar posibles errores que, normalmente, JS no lanzaría </p>
+        <p>Para poder utilzar el modo estricto, es necesario poner entre comillas dobles la frase <q>use strict</q> dentro de la función la cual quieres que se comporte de forma estricta. </p>
+        <script>
+            function puedesDetectarProblema(){
+                "use strict"
+                try {
+                for(contador = 0;contador<10;contador++){
+                    console.log("Feliz feliz");
+                }
+                } catch (error) {
+                    console.log(error)
+                }
+                }
+            
+
+            puedesDetectarProblema();
+        </script>
+    </div>
+
+    <div>
+        <h2>Probando</h2>
+        <p>Para poder probar nuestro código, es necesario utilizar un entorno de desarrollo, el cual nos permite ver los errores que se producen en tiempo real. </p>
+        <p>A parte de esto, una de las formas más sencillas para probar nuestro código es ejecutandolo y ver si se produce un error. Pero esto suele ser bastante tedioso y repetitivo. </p>
+        <p>Por eso, es recomendable utilizar un entorno de desarrollo o <q>suits de prueba</q>, lo cuales nos ayudarán a probar de forma automática, todo el contexto de nuestro código sin tener que 
+        ejecutarlo manualmente. </p>
+
+
+    </div>
+    <div>
+        
+        <h2>Depuración</h2>
+        <p>La depuración es una herramienta que nos permite ver el código que se
+        ejecuta en tiempo real, y nos permite ver los errores que se producen en tiempo real y además, las variables de entorno y errores que se producen.
+        </p>
+        <p>Además, la depuración es una forma de comprobar errores que se producen en nuestro código.</p>
+        <p>Una forma bastante sencilla de probar y comprobar que nuestro código se ejecuta tal y como prevemos, es común utilizar <code>console.log</code> y así observar el estado de nuestras 
+        variables en tiempo real. Esto es recomendable, solamente cuando estamos creando nuevo código o manteniedo un proyecto. Una vez comprobado, es necesario eliminarlo para no liarnos con otros 
+        mensajes de control.</p>
+        <p>Otra foram de realizar la depuración, es mediante nuestro entorno de desarrollo que nos ofrece el navegador. Se utiliza la palabra reservada <code>debugger</code> para establecer un breack
+        en nuestro código. Cada vez que el entorno llegue a dicho punto, se parará y nos mostrará todas las variables del scope/alcance de nuestro código.</p>
+    </div>
+    <div>
+        <h2>Excepciones</h2>
+        <p>Las excepciones son errores que se lanzan en tiempo de ejecución, y que además, el programador puede controlar. Nosotros mismos debemos de pensar en aquellos errores que queremos 
+        manejar y por lo tanto, si es necesario lanzar una excepción o solamente controlarla de otra forma, como devolviendo algún valor especial, como <code>null, NaN o undefined</code></p>
+
+        <p>El manejo de excepciones es muy importante cuando queremos que nuestro código, cuando se encuentre un error, nos indique y nos proporcione una retroalimentación sobre ello. Para ello, 
+        se utiliza la palabra clave o statement <code>throw</code>, el obligar al entorno a que salte un error, pero que el programa siga ejecutando y no se pare en seco. </p>
+        <p>Cuando se lanza une excepción, se produce el llamado <span class="subrayado">desenrollado de pila</span>, la cual obliga a saltar, no solo fuera de la función actual, sino hasta la primera función
+        que capture la excepción. </p>
+
+        <p>La captura de una excepción se realiza dentro de un statement <code>try/catch</code>. Dentro del statement <code>try </code>, se debe posicionar la función la cual, queremos capturar la posible 
+        expcepción que puede arrojar. Dentro del statement <code>catch</code>, se implementa un código para controlar y el comportamiento deseado cuando salte la excepción. Este statement solamente se 
+        ejecuta únicamente cuando salte la excepción. En el statament <code>catch</code>, tiene como parametro de entrada el error, el cual siempre recogerá los siguientes parametros:</p>
+
+        <ul>
+            <li><code class="subrayado">message</code>: Mensaje de retroalimentación con descripción clara del error cometido</li>
+            <li><code>stack</code>: Pila de las llamadas de función hasta la función donde se ha realizado o saltado la excepción.</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Limpiando despúes de excepciones</h2>
+        <p>Una vez que se ha lanzado una excepción, es importante limpiar el
+        entorno de ejecución, para evitar que se produzcan errores adicionales. Esto se
+        realiza mediante el statement <code>finally</code>, el cual se ejecuta tanto si se
+        lanza una excepción como si no se lanza. </p>
+
+    </div>
+    <div>
+        <h2>Capturas selectivas</h2>
+        <p>Se debe tener cuidado cuando se realiza el manejo y control de errores, ya que puede que dentro del try/catch se produzca una excepción que no estemos teniendo en cuenta. Por lo tanto, 
+        si se produce un error de otro tipo que no estamos manejando dentro de este, saltará el manejo de error como si se tratase del error observado, además de que el mensaje de retroalimentación
+        que proporciona el Objeto Error se pierde. Es por eso, que es recomendable mostrar por pantalla siempre el mensaje o realizar una división de los tipos de errores que se pueden dar. Por cada tipo, 
+        mostrar una retralimentación deseada.</p>
+    </div>
+
+    <div>
+        <h2>Tipos</h2>
+    </div>
+
+    <div>
+        <h2>Afirmaciones</h2>
+        <p>Las afirmaciones son una forma de comprobar si una condición es verd
+        a o falsa. Si la condición es falsa, se lanza una excepción
+        <code>Error</code> con el mensaje de retroalimentación <code>mensaje</code>
+        </p>
+    </div>
+
+    <div>
+        <h2>Propagación de errores.</h2>
+        <p>En cada función que se implemente, es importante conocer si es necesario manejar los tipos de errores que se pueden producir o si no se produce el resultado deseado, devolver un tipo 
+        de valor especial o que se arroje una excepción. A mi gusto, creo que es preferible siempre, que se manejen los errores, para que se sepa exactamente donde se ha producido el error y sea
+        más sencillo solucionarlo. Es verdad, que existen ocasiones que es mejor devolver un valor especial, pero tener mucho cuidado con aquellas funciones que también tengan en cuenta, que 
+        devolver un valor especial entre dentro del comportamiento normal del método.</p>
+    </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 9: Expresiones regulares</title>
+    <style>
+        table{
+            border: solid;
+            border-collapse: collapse;
+            & th,tr,td{
+                border: solid;
+                padding: 8px;
+            }
+            & thead{
+                position: sticky;
+                left: 0;
+                top: 0;
+                background-color: white;
+            }
+        }
+        
+        .negrita{
+            font-weight: bold;
+        }
+        
+    </style>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="ejercicios.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Expresiones regulares</h1>
+    
+    </header>
+    <main>
+        <div>
+        
+        <h2>Creando Expresiones regulares</h2>
+        <p>Las expresiones regulares es una poderosa herramienta para inspeccionar y procesar cadenas de texto.</p>
+        <p>Las expresiones regulares, en JS se pueden, crear de dos formas distintas. </p>
+        <ol>
+            <li>Mediante el objeto <code>RegExp</code>: Esto es asi porque una expresión regular es un tipo de objeto que proporciona JS. Y al igual que cualquier objeto, tiene su propio constructor.</li>
+            <li>O entre barras laterales /.../: Con esta notación se debe tener cuidado, debido a que, existen caracteres que dentro de una expresión regular, no se comportan como literales y no se tiene en cuenta 
+            dentro de la expresión que se quiere expresar. Por ejemplo, para que un caracter especial como puede ser "+" o el mismo "." se tengan en cuenta como literales dentro de la expresión regular, 
+            es necesario poner delante de ellos un barra invertida "\". Pero, en el caso de caracteres de salto de línea como "\n", la expresión regular lo entenderá como el propio caracter de salto de línea. Por lo tanto, 
+            si se quiere que uno de estos caracteres especiales <span class="negrita">formen parte del patrón</span>, se debe añadir una barra invertida delante de él.</li>
+        </ol>
+        <script>
+            let regE = new RegExp("abc")
+            console.log(regE)
+            let regE2 = /abc/
+            console.log(regE2)
+            let holaPunto = /Hola\+/
+            let holaPunto2 = /Hola+/
+
+            console.log(holaPunto)
+            console.log(holaPunto2)
+
+            console.log(holaPunto.test("Hola"))//False, ya que espera una entrada de Hola+
+            console.log(holaPunto2.test("Hola"))//True, ya que recoge aquellas expresiones con un "Hola" o más.
+            console.log(holaPunto.test("Hola\+"))
+        </script>
+        </div>
+
+        <section class="container">
+            <h2>Caracteres especiales</h2>
+
+            <table>
+                <thead>
+                    <th>Expresión especial</th>
+                    <th>Explicación</th>
+                    <th>Colocación</th>
+                    <th>Ejemplo</th>
+                    <th>Salida</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/i </td>
+                        <td>Hace que la expresión regular sea insensible a mayúsculas como minúsculas. </td>
+                        <td>Se debe poner al final de la expresión regular si se realiza con la 2º forma mencionada </td>
+                        <td><code>/sergio/i</code> </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>\b</td>
+                        <td>Obliga que encuentre solamente expresiones entre  <span>límites de palabras.</span></td>
+                        <td>Se debe poner uno al principio del límite de palabra de la expresión que se quiere recoger y otra al final</td>
+                        <td><code>/\bcat\b/</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Operador <code class="negrita">+</code></td>
+                        <td>Obliga a que el patrón debe de coincidir <span class="negrita">una o más</span> veces</td>
+                        <td>Detrás de la expresión de caracteres que queremos que se repita</td>
+                        <td>/abc+/</td>
+                        <td>Coincide con todas las cadenas de texto que tengan contenido "abc" con una o más "c"</td>
+                    </tr>
+                    <tr>
+                        <td><code class="negrita">[ ]</code></td>
+                        <td>Hace que esta parte contenida dentro de los corchetes coincida con cualquiera de los caracteres entre corchetes</td>
+                        <td>En cualquier parte de la expresión regular</td>
+                        <td>/[aeiou]/</td>
+                        <td>Cualquier palabra que contenga una vocal.</td>
+                    </tr>
+                    <tr>
+                        <td>Intercalación <code class="negrita">^</code></td>
+                        <td>Este caracter, depende de donde se introduzca, se comportará de una forma o de otra: <br>
+                            <ul>
+                                <li>
+                                    Entre corchetes: Invertirá ese conjunto de caracteres dentro de los corchetes. Es decir, para expresar que deseas coincidir con cualquier caracter excepto con los que están en el conjunto. 
+                                </li>
+                                <li>
+                                    Al principio de la expresión regular: Obliga a que la coincidencia se produzca únicamente <span class="negrita">al principio</span> de la cadena de texto.
+                                </li>
+                            </ul>
+                        </td>
+                        <td>Al principio de la expresión regular o al principio entre corchetes.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Operador <code class="negrita">*</code></td>
+                        <td>Tiene un significado similar al operador <code>+</code>, pero también permite que el patrón coincida cero veces. Algo con una estrella después de él, nunca evitará un patrón
+                        de coincidirlo.</td>
+                        <td>Detrás del patrón que queremos que se comporte de esta manera</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Operador <code class="negrita">?</code></td>
+                        <td>Hace que una parte del patrón que está delante de ella sea <span class="negrita">opcional</span>. Es decir, que puede coincidir una o ninguna vez.</td>
+                        <td>Detrás del patrón que queremos que se comporte de esta manera</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Operador <code class="negrita">{ }</code></td>
+                        <td>Para especificar que un patrón se quiere que se repita un número exacto de veces, se pone entre llaves ({ }). Esta expresión tiene distintas sintaxis, dependiendo de 
+                        la finalidad que le queramos dar. 
+                            <ol>
+                                <li><code>{numero}</code>: De esta forma, se especifica el número de veces <span>exacto</span> que se quiere repetir el patrón.</li>
+                                <li><code>{numero, }</code>: Especifica que se debe repetir, al menos, el número de veces que se establezca en la variable "número".</li>
+                                <li><code>{num1,num2}</code>: Establece que se debe repetir, al menos, las veces que se establezca en "num1" y un máximo de "num2" veces.</li>
+                                <li><code>{, num2}</code>: no la pilla JS</li>
+                            </ol>
+                        </td>
+                    </tr>
+                    <script>
+                        let exprMax = /a{3}/
+                        let exprMin = /a{3,}/
+                        console.log("Exprsiones maximo")
+                        console.log(exprMax.test("aa")); // false
+                        console.log(exprMin.test("aaaa")); // true
+                    </script>
+                    <tr>
+                        <td>Caracter de tubería <code class="negrita">|</code></td>
+                        <td>Permite que se realice una elección entre dos patrones. Es decir
+                        que se puede coincidir con cualquiera de los dos patrones que se le indique, el de la derecha o el de la izquierda. <br> 
+                        Se puede poner más de un caracter de tubería en una expresión.
+                        </td>
+                        <td>Entre los dos patrones que queremos que se comporte de esta manera</td>
+                        <td><code>/[cerdo|pollo|vaca]s?/i</code></td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Operador <code class="negrita">$</code></td>
+                        <td>Obliga que la coincidencia se produzca al final de la cadena de texto</td>
+                        <td>Al final de la expresión regular</td>
+                        <td><code>/.+[.]com$/</code></td>
+                        <td></td>
+                    </tr>
+                    <script>
+                        let exprFinal = /.+[.]com$/
+
+                        console.log("Comprobando expresión regular con el operador de final de texto.")
+
+
+                        console.log(exprFinal.test("www.google.es")); // false
+                        console.log(exprFinal.test("www.google.com")); // true
+                    </script>
+                    <tr>
+                        <td>/u</td>
+                        <td>Permite realizar coincidencias teniendo en cuenta el lenguaje <span class="negrita">Unicode</span>, ya que este lenguaje utiliza más de un caracter para 
+                        representar sus caracteres, y por defecto, las expresiones regulares solo realizan coincidencias de caracter en caracter. Se suele utilizar para en casos como los emojis o 
+                        con caracteres internacionales. </td>
+                        <td>Al final de la expresión regular.</td>
+                        <td>/u</td>
+                        <td>/u</td>
+                    </tr>
+                    <tr>
+                        <td>/g</td>
+                        <td>Este operador te permite se produzcan coincidencias en todo el string, no solamente en la primera coincidencia. <br>
+                        Se suele utilizar sobre todo con la función <code>replace</code>, para que se produzca el reemplazo en todo el string, no solamente en la primera.</td>
+                        <td>Después de la expresión regular</td>
+                        
+                        <td>/[aeiou]/g</td>
+                        <script>
+                            console.log("Probando el operador global")
+                            let exprGlobal = /[aeiou]/g
+                            let exprNoGlobal = /[aeiou]/
+
+                            let texto = "Hola, soy un texto con varias vocales"
+                            console.log(texto.match(exprGlobal)) // ["a", "o", "o", "
+                            console.log(texto.match(exprNoGlobal)) // ["a", "o", "o", "
+                        </script>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Un <span>límite de palabra</span> puede ser el inicio o final del string o cualquier punto en el string que tenga un caracter de palabra en un lado y un caracter de no palabra en el otro.</p>
+
+        </section>
+
+        <section class="container">
+            <h2>Conjunto de caracteres</h2>
+            <p>Para que, en una expresión regular, puedas establecer un rango de caracteres que quieras que coincidan con su literal, se debe poner entre corchetes <span class="negrita"> [ ] </span>. <br>
+                Cuando pones un par de caracteres dentro de corchetes, obligas a que, <span class="negrita"> al menos uno, </span>se cumpla. 
+                Para que se establezca el rango de caracteres, se debe de establecer entre el primer y último caracter un <code class="negrita"> - </code> 
+            </p>
+            <table>
+                <thead>
+                    <th>Atajos</th>
+                    <th>Correspondiente mediante exp regular</th>
+                    <th>Explicación</th>
+                    <th>Ejemplo</th>
+                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>\d</td>
+                        <td>[0-9]</td>
+                        <td>Cualquier carácter numérico</td>
+                    </tr>
+                    <tr> 
+                        <td>\w</td>
+                        <td></td>
+                        <td>Cualquier caracter alfanumérico</td>
+                    </tr>
+                    <tr>
+                        <td>\s</td>
+                        <td></td>
+                        <td>Cualquier carácter de espacio en blando o salto de línea</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>\D</td>
+                        <td></td>
+                        <td>Cualquier caracter no numérico</td>
+                    </tr>
+                    <tr>
+                        <td>\W</td>
+                        <td></td>
+                        <td>Cualquier caracter no alfanumérico</td>
+                    </tr>
+                    <tr>
+                        <td>\S</td>
+                        <td></td>
+                        <td>Cualquier caracter no espacio en blanco ni salto de línea</td>
+                    </tr>
+                    <tr>
+                        <td>.</td>
+                        <td></td>
+                        <td>Cualquier caracter a excepción de una nueva línea</td>
+                    </tr>
+                    
+
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Funciones sobre expresiones regulares</h2>
+            <table>
+                <thead>
+                    <th >Nombre función</th>
+                    <th>Funcionalidad</th>
+                    <th>parámetros</th>
+                    <th>Sobre qué objetos puede ser llamados</th>
+                    <th>Ejemplo</th>
+                    <th>Dato que retorna</th>
+                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Test</td>
+                        <td>Proporciona un método que te devuelve <code>true</code> si la cadena de texto coincide con la expresión regular <br> y <code> false</code> en caso contrario</td>
+                        <td>Tiene un 1 solo parámetro: una cadena de texto que se comprobará si coincide con la expresión regular.</td>
+                        <td>Objeto <code>RegExp</code></td>
+                        <td>
+                            <code>
+                                let exprRegular = /abc/
+                                console.log(exprRegular.test("abc")); // true
+                            </code>
+                        </td>
+                        <td>Boolean</td>
+                    </tr>
+                    <script>
+                        let exprRegular = /abc/
+                        console.log(exprRegular.test("abc")); // true
+                        console.log(exprRegular.test("xxxabc")); // true
+                        console.log(exprRegular.test("xxxabcxxxx")); // true
+                        console.log(exprRegular.test("xxxabxxxx")); // false
+                        
+
+
+                    </script>
+                    <tr>
+                        <td>Match</td>
+                        <td>Devuelve <code>null</code> en el caso de que no exista ninguna coincidencia. En caso contrario, devuelve un array de string con las coincidencias. Si hay agrupaciones con paréntesis
+                        en la expresión regular, en la primera posición se pondrá la coincidencia entera y, en las siguientes posiciones, las agrupaciones por orden. Es una forma muy útil para dividir la coincidencia
+                        sin necesidad de llamar al método <code>split</code></td>
+                        <td>Tiene un solo parámetro. Un objeto <code>RegExp</code> con el que se comparará el string.</td>
+                        <td>Objeto <code>String</code></td>
+                        <td>Match</td>
+                        <td>Null o Array de String</td>
+                    </tr>
+
+                    <script>
+                        console.log("FUNCIONAMIENTO DE MATCH")
+                        let cadena = "en el año 1992"
+                        let suma = "9+3"
+                        let opera = /[+-/*]/
+                        let añoExpresion= /(año)? (\d{4})/
+                        let coincidencia = cadena.match(añoExpresion)
+                        console.log(coincidencia)
+                        console.log(suma.match(/\d+/g))
+                        console.log(suma.match(opera))
+                    </script>
+                    <tr>
+                        <td>Exec</td>
+                        <td>Devuelve <code>null</code> en el caso de que no exista ninguna coincidencia. En caso contrario, devuelve un array de string con las coincidencias. Si hay agrupaciones con paréntesis
+                        en la expresión regular, en la primera posición se pondrá la coincidencia entera y, en las siguientes posiciones, las agrupaciones por orden. Es una forma muy útil para dividir la coincidencia
+                        sin necesidad de llamar al método <code>split</code></td>
+                        <td>Tiene un solo parámetro. Un <code>String</code> que se comparará si cumple con la expresión regular.</td>
+                        <td>Objetos <code>RegExp</code></td>
+                        <td></td>
+                        <td>Null o Array de String</td>
+                    </tr>
+                    <script>
+                        console.log(añoExpresion.exec(cadena))
+                    </script>
+                    <tr>
+                        <td>Replace</td>
+                        <td>Función de los <code>String</code> para reemplazar parte de la cadena de texto por otra.</td>
+                        <td>Acepta 2 parámetros de entrada:
+                            <ol>
+                                <li><code>String o RegExp</code>: Se trata de la parte del texto de entrada que se quiere cambiar.</li>
+                                <li><code>String</code> o una función: Es la parte de texto que se va a reemplazar. Si se trata de una función, por cada coincidencia, 
+                                la función será llamada, con la coincidencia completa y con cada grupo de coincidencia como parámetros de entrada.</li>
+
+                            </ol>
+
+                        <p>Para referirse, en las funciones, a cada grupo de coincidencia, se utiliza $1, $2, ... hasta $9. Si se quiere referir a todas las coincidencias a la vez, se utiliza la expresión $&.</p>
+                        </td>
+                        <td>Objetos <code>String</code></td>
+                        <td><code>cadena.replace(/o/g, "a")</code></td>
+                        <td>Devuelve un <code>String</code> con los caracteres ya reemplazados.</td>
+
+                    </tr>
+                    <script>
+                        console.log("Apartado del método replace")
+                        let cadReplace = "Quiero que se reemplaze todas las o"
+                        console.log(cadena.replace(/o/g, "a"))
+                    </script>
+                    <tr>
+                        <td>Search</td>
+                        <td>Busca, al igual que el método "IndexOf", la primera posición que coincida con la expresión.</td>
+                        <td>Únicamente tiene un solo parámetro de tipo <code>String o RegExp</code>. Se trata de la expresión que se quiere buscar</td>
+                        <td>Objetos <code>String</code></td>
+                        <td>Search</td>
+                        <td>Devuelve un <code>Number</code>. -1 si no se encuentra la expresión.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Agrupando subexpresiones</h2>
+            <p>Para agrupar subexpresiones se utiliza el paréntesis ( ). A partir de esto, cuando añadimos un operador "+" o "*" detrás de un parentesis, se referirá a todo el paréntesis, 
+            en su totalidad, como de un solo elemento se tratase.
+
+             <script>
+            let exprParentesis = /(hola+)+/i //La primera "+" hace referencia a la a de "hola", pero el segundo "+" hace referencia a la palabra "hola+" en su totalidad
+            console.log("Agrupando subexpresiones")
+            console.log(exprParentesis.test("hola")); // true
+            console.log(exprParentesis.test("holaaaaa")); // true
+            console.log(exprParentesis.test("holaaaaaHolaaa")); // true
+
+        </script>
+        </section>
+
+        <section>
+            <h2 >Retrocediendo</h2>
+            <p>En las expresiones con tubería (|) o utilizando expresiones como <code>?, *</code>, por cada una de ellas, se crea una rama
+            que el emparejador utiliza para comprobar su coincidencia. Al entrar en cada rama, el emparejador recuerda la posición en la que se ha quedado,
+            y cuando sale de la rama, recuerda la posición en la que se ha quedado y "retrocede"a esa posición, si el string no coincide con ese grupo. 
+            El emparejador se detiene tan pronto como encuentra una coincidencia completa. Esto significa que si múltiples ramas podrían coincidir con un string, 
+            solo la primera (ordenada por donde las ramas aparecen en la expresión regular) es usada. </p>
+            <p>Hay que tener mucho cuidado con crear expresiones regulares con demasiados retrocesos, ya que es muy fácil confundirse con esto. Esto provocará que 
+            la expresión regular se comporte de una forma extraña a la buscada y deseada.</p>
+        </section>
+
+        <section>
+            <h2>Codicia</h2>
+            <p>La codicia es un comportamiento que se puede producir en las expresiones
+            regulares cuando se utilizan los operadores <code>+</code> o <code>*</code>
+            </p>
+            <p>La codicia se produce cuando el emparejador encuentra una coincidencia
+            y se queda en esa posición, y luego encuentra otra coincidencia, y se queda en
+            esa posición, y así hasta que se acaba el string. Esto puede provocar que
+            el emparejador no encuentre la coincidencia que se busca, ya que se
+            queda en la última posición en la que se quedó, y no sigue buscando
+            </p>
+            <p>Para evitar la codicia, se puede utilizar el operador <code>?</code> <span class="negrita">delante de los operadores</span>
+            que queremos que dejen de comportarse como codiciosos y volverlos "no_codiciosos". Esto producirá que el emparejador tenga en cuenta 
+            únicamente aquellas coincidencias más pequeñas. 
+
+        </section>
+
+       <section>
+            <h2>Propiedades de expresiones regulares</h2>
+            <p>Las expresiones regulares tienen parámetros y propiedades útiles a la hora de utilizarlos. Estos son:</p>
+            <ol>
+                <li><code>souce</code>: Esta propiedad guarda el string con el que se creó la expresión regular.</li>
+                <li><code>lastIndex</code>: Esta propiedad guarda la <span class="negrita">última posición</span> en el que se obtuvo una coincidencia. <br> 
+                !OJO¡: Solamente funcionará si en la expresión, tiene la flag de "global" (g) o "sticky"(y)</li>
+                <li><code>flags</code>: Devuelve los flags que tiene activados la dicha expresión regular. Las devuelve como un string, todas las flags seguidas.</li>
+            </ol>
+            <p>!WARNING¡: Mucho cuidado cuando se utilicen expresiones regulares con los flags de global o sticky activados, ya que, cada vez que se realiza o se intenta 
+            hacer una coincidencia, dependiendo de la flag activada, la expresión regular empezará a obtener una coincidencia a partir de la posición guardada en "lastIndex". <br>
+            La diferencia entre "global" y "sticky" es que con esta última, la coincidencia solamente tendrá éxito cuando la coincidencia empiece directamente en la propiedad "lastIndex",
+            mientras que con "global" buscará una posición <span class="negrita">desde la propiedad "lastIndex"</span> donde pueda comenzar una coincidencia. </p>
+       </section>
+
+    </main>
+</body>
+</html>
