@@ -1,0 +1,5 @@
+class Percentaje {
+    constructor(number){
+        
+    }
+}

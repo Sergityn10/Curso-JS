@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicacion de los array en JS</title>
+    <script type="module" src="script.js"></script>
+</head>
+<body>
+    <main>
+        <table>
+            <thead>
+                <th>Formas de iterar un array</th>
+                <th>Explicacion</th>
+                <th>Ejemplo</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>For normal</td>
+                <td></td>
+                <td>
+                    <code>const colors = ["red", "green", "blue"];
+                            for (let i = 0; i < colors.length; i++) {
+                            console.log(colors[i]);
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td>forEach</td>
+                <td>forEach</td>
+                <td>
+                    <code>
+                        const colors = ["red", "green", "blue"];
+                        colors.forEach((color) => console.log(color));
+                    </code>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections">Mozilla developers fundation</a>
+    </footer>
+</body>
+</html>

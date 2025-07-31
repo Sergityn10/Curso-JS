@@ -36,9 +36,11 @@
 </head>
 <body>
     <main>
+    
         <h1>OBJETO DATE (FECHA)</h1>
         <p>La clase <code>Date</code> es natural de JS y viene predefinida ya en este lenguaje de programación. Si llamas al constructor de esta clase, sin ningún parametro, obtendrás la fecha 
         actual. </p>
+        <p class="precaucion">!CUIDADO!: Ahora se ha implementado un nuevo objeto con el que se trabaja mejor con fechas. Se llama "Temporal". ES PREFERIBLE UTILIZAR ESTE ULTIMA IMPLEMENTACIÓN.</p>
         <p class="precaucion"><span>!WARNING¡:</span> JavaScript usa una convención en donde los números de los meses comienzan en 0, sin embargo, los días de los meses comienzan en uno.</p>
         <p>Esta clase guarda <span class="negrita">marcas de tiempo</span> en milisegundos desde el nacimiento LINUX o "tiempo de Linux", creado en <time datetime="1970">1970</time> en la zona horaria UTC. Puedes usar
         números negativos para representar instantes de tiempo anteriores a 1970. Existe una función <code>getTime()</code> que te devuelve el número de milisegundos del "Tiempo Linux".</p>
@@ -56,7 +58,7 @@
             </ul>
             <script>
                 let ahora = new Date()
-                ahora.get
+                
                 console.log(`Fecha actual -> ${ahora}`)
                 console.log(ahora)
                 let milisegundos = ahora.getTime()

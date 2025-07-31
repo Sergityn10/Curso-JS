@@ -19,7 +19,7 @@ function multiplicar(a,b){
         try {
         resultado = multiplicaciónPrimitiva(a,b)
     } catch (error) {
-        console.log(error)
+        console.warn(error.message)
     }
     } while (resultado === null);
     return resultado
@@ -30,7 +30,7 @@ console.log(multiplicar(8,10))
 
 //EJERCICIO 2: LA CAJA BLOQUEADA
 //Considera el siguiente objeto:
-const caja = {
+const caja =  {
     bloqueada:true,
     desbloquear(){
         this.bloqueada = false

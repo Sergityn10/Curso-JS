@@ -58,7 +58,7 @@ let string12 = "; :"
 console.log(espacios.test(string10))
 console.log(espacios.test(string11))
 console.log(espacios.test(string12))
-console.log(espacios.exec(string12))
+console.log(espacios.exec(string11))
 
 //-----------------------------------------------
 //1.6- Una palabra con más de seis letras

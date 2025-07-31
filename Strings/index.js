@@ -56,7 +56,7 @@ console.log(`Separamaos una frase en un array por espacios: ${frase}`);
 
 /*
 IndexOf busca si hay alguna ocurrencia de un valor en el string
-Devuelve la posicion donde se encuentra o -1 si no lo encuentra.  Si existe más de una ocurrencia, se quedará con la primera que encuentre.
+Devuelve la posicion donde se encuentra o -1 si no lo encuentra. Si existe más de una ocurrencia, se quedará con la primera que encuentre.
 Este metodo puede buscar caracteres con más de un caracter dentro del string
 */
 
@@ -165,3 +165,15 @@ miString.toLocaleLowerCase(); //Devuelve el string en minúsculas
 miString.toLocaleUpperCase(); //Devuelve el string en mayúsculas
 
 miString.toString(); //Devuelve el string en formato string
+
+/*
+    include (Toma 2 argumentos)
+    1. SearchString: El conjunto de caracteres que se desea buscar
+    2. Position (opocional): La posición a partir de la que se quiere buscar
+
+*/
+let includeString = "Sergio Martín esta a punto de acabar la carrera y esta con su TFG"
+
+console.log("APARTADO DE INCLUDE")
+console.log(includeString.includes("Martín", 10))
+console.log(includeString.includes("Martín"))
