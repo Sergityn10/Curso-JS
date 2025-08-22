@@ -34,10 +34,10 @@ console.log(almacen.replace(/(\d+) (\w+)/g, menosUno))
 //coincidencia. Si no encuentra nada devuelve -1.
 
 console.log("Probando el método search de la clase String")
-let palabra = "Esto es un ejemplo para probar el 1 metodo search"
+let palabra = "     palabra"
 console.log(palabra.search(/\w+/)) //busca la primera palabra y devuelve el índice
-console.log(palabra.search(/\d+/))
-console.log(palabra.search("search"))
+console.log(palabra.search(/\d+/))//devuelve -1 ya que no hay dígitos en la cadena de texto
+
 
 //Propiedades de las expresiones regularesç
 console.log("viendo las propiedades de las expresiones regulares")
@@ -49,9 +49,7 @@ console.log(nombre.lastIndex) //Guarda la posición donde se encontró la últim
 nombre.exec("    HOla me llamo Sergio")
 console.log(nombre.lastIndex) //Guarda la posición donde se encontró la última coincidencia de la expresión. Cuando se crea, su valor por defecto es 0.
 console.log(expresion.source) //Se trata del string con el que se creó la expresión.
-console.log(nombre.source) //Se trata del string con el que se creó la expresión.
 console.log(nombre.flags)
-console.log(expresion.flags)
 
 //Ciclos sobre coincidencias
 console.log("Ciclos sobre coincidencias")

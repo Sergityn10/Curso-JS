@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Object Model (DOM)</title>
+    <script type="module" src="script.js"></script>
 </head>
 <body>
     <header>
@@ -38,6 +39,21 @@
                 de que sea el primer o último hijo, respectivamente, devolverán <code>null</code></li>
             </ol>
         </section>
+        <section>
+            <h2>Objetos del DOM</h2>
+            <p>El DOM está compuesto por una serie de objetos que representan los elementos del documento
+            <p>The <code>document</code> and <code>window</code> objects are the objects whose interfaces you generally use most often in DOM programming</p>
+        </section>
+        <section>
+            <h2>Reflected attributes</h2> 
+            <p>The Element.getAttribute() will return "" if the input is checked or null if it is not. The corresponding HTMLInputElement.checked property returns true or false for the checked state. Otherwise boolean reflected attributes are the same as any other reflected attributes.</p>
+        </section>
     </main>
+    <footer>
+        <h2>Bibliografia</h2>
+        <ul>
+            <li><a href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model">Document Object Model - MDN</a></li>
+            <li><a href="https://www.w3schools.com/js/js_htmldom.asp">HTML DOM - W3Schools</a></li>
+    </footer>
 </body>
 </html>

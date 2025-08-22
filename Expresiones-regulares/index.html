@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo 9: Expresiones regulares</title>
     <style>
-
         table{
             border: solid;
             border-collapse: collapse;
@@ -24,15 +23,6 @@
         .negrita{
             font-weight: bold;
         }
-.warn {
-    color: red; /* Cambia el color del texto a rojo (u otro color que desees) */
-    font-size: 1.5em; /* Aumenta el tamaño del texto. 1.5em es un 50% más grande que el tamaño base. */
-    font-weight: bold; /* Opcional: Para hacerlo más destacado */
-    background-color: #fff3cd; /* Opcional: Un fondo suave para la advertencia */
-    border: 1px solid #ffeeba; /* Opcional: Un borde para resaltar */
-    padding: 15px; /* Opcional: Espaciado interno */
-    border-radius: 8px; /* Opcional: Bordes redondeados */
-}
         
     </style>
     <script type="module" src="index.js"></script>
@@ -85,6 +75,13 @@
                     <th>Salida</th>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>/i </td>
+                        <td>Hace que la expresión regular sea insensible a mayúsculas como minúsculas. </td>
+                        <td>Se debe poner al final de la expresión regular si se realiza con la 2º forma mencionada </td>
+                        <td><code>/sergio/i</code> </td>
+                        <td></td>
+                    </tr>
                     <tr>
                         <td>\b</td>
                         <td>Obliga que encuentre solamente expresiones entre  <span>límites de palabras.</span></td>
@@ -182,40 +179,20 @@
                         console.log(exprFinal.test("www.google.es")); // false
                         console.log(exprFinal.test("www.google.com")); // true
                     </script>
-
-                </tbody>
-            </table>
-
-            <p>Un <span>límite de palabra</span> puede ser el inicio o final del string o cualquier punto en el string que tenga un caracter de palabra en un lado y un caracter de no palabra en el otro.</p>
-
-        </section>
-
-        <section class="container">
-            <h2>BANDERAS AL FINAL DE LA EXPRESION REGULAR</h2>
-            <table>
-                <thead>
-                    <th>Expresión especial</th>
-                    <th>Explicacion</th>
-                    <th>Ejemplo</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>/i </td>
-                        <td>Hace que la expresión regular sea insensible a mayúsculas como minúsculas. </td>
-                        <td><code>/sergio/i</code> </td>
-                    </tr>
                     <tr>
                         <td>/u</td>
                         <td>Permite realizar coincidencias teniendo en cuenta el lenguaje <span class="negrita">Unicode</span>, ya que este lenguaje utiliza más de un caracter para 
                         representar sus caracteres, y por defecto, las expresiones regulares solo realizan coincidencias de caracter en caracter. Se suele utilizar para en casos como los emojis o 
                         con caracteres internacionales. </td>
+                        <td>Al final de la expresión regular.</td>
+                        <td>/u</td>
                         <td>/u</td>
                     </tr>
-                    
                     <tr>
                         <td>/g</td>
                         <td>Este operador te permite se produzcan coincidencias en todo el string, no solamente en la primera coincidencia. <br>
                         Se suele utilizar sobre todo con la función <code>replace</code>, para que se produzca el reemplazo en todo el string, no solamente en la primera.</td>
+                        <td>Después de la expresión regular</td>
                         
                         <td>/[aeiou]/g</td>
                         <script>
@@ -224,14 +201,15 @@
                             let exprNoGlobal = /[aeiou]/
 
                             let texto = "Hola, soy un texto con varias vocales"
-                            console.log("Comprobando las funcionalidades de la bandera global")
                             console.log(texto.match(exprGlobal)) // ["a", "o", "o", "
-                            console.log(texto.match(exprNoGlobal)) // ["o"]
+                            console.log(texto.match(exprNoGlobal)) // ["a", "o", "o", "
                         </script>
                     </tr>
-
                 </tbody>
             </table>
+
+            <p>Un <span>límite de palabra</span> puede ser el inicio o final del string o cualquier punto en el string que tenga un caracter de palabra en un lado y un caracter de no palabra en el otro.</p>
+
         </section>
 
         <section class="container">
@@ -256,7 +234,7 @@
                     </tr>
                     <tr> 
                         <td>\w</td>
-                        <td>[a-zA-Z]</td>
+                        <td></td>
                         <td>Cualquier caracter alfanumérico</td>
                     </tr>
                     <tr>
@@ -450,7 +428,7 @@
                 !OJO¡: Solamente funcionará si en la expresión, tiene la flag de "global" (g) o "sticky"(y)</li>
                 <li><code>flags</code>: Devuelve los flags que tiene activados la dicha expresión regular. Las devuelve como un string, todas las flags seguidas.</li>
             </ol>
-            <p class="warn">!WARNING¡: Mucho cuidado cuando se utilicen expresiones regulares con los flags de global o sticky activados, ya que, cada vez que se realiza o se intenta 
+            <p>!WARNING¡: Mucho cuidado cuando se utilicen expresiones regulares con los flags de global o sticky activados, ya que, cada vez que se realiza o se intenta 
             hacer una coincidencia, dependiendo de la flag activada, la expresión regular empezará a obtener una coincidencia a partir de la posición guardada en "lastIndex". <br>
             La diferencia entre "global" y "sticky" es que con esta última, la coincidencia solamente tendrá éxito cuando la coincidencia empiece directamente en la propiedad "lastIndex",
             mientras que con "global" buscará una posición <span class="negrita">desde la propiedad "lastIndex"</span> donde pueda comenzar una coincidencia. </p>

@@ -9,6 +9,9 @@
 //En JavaScript, no se puede especificar qué propiedades o funciones son privadas o públicas, pero los programadores
 //utilizan el signo "_" al principio para referirse a una propiedad privada
 
+//FORMAS DE CREAR UN OBJETO
+
+
 let conejo = {}
 conejo.nombre = "Bugs Bunny"
 conejo.edad = 5

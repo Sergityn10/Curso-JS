@@ -2,7 +2,8 @@
 //Crear una función "multiplicaciónPrimitiva", que en un 20% de los casos, multiplica dos números, y en el otro 80%, genera una excepción del tipo FalloUnidadMultiplicadora. 
 //Escribir una función que envuelva esta función y siga intentando hasta que una llamada tenga éxito, después del cual retorna el resultado
 
-class FalloUnidadMultiplicadora extends Error{}
+class FalloUnidadMultiplicadora extends Error{
+}
 
 function multiplicaciónPrimitiva(a,b){
     if(Math.random() < 0.2){
@@ -19,7 +20,7 @@ function multiplicar(a,b){
         try {
         resultado = multiplicaciónPrimitiva(a,b)
     } catch (error) {
-        console.warn(error.message)
+        console.log(error)
     }
     } while (resultado === null);
     return resultado
@@ -30,7 +31,7 @@ console.log(multiplicar(8,10))
 
 //EJERCICIO 2: LA CAJA BLOQUEADA
 //Considera el siguiente objeto:
-const caja =  {
+const caja = {
     bloqueada:true,
     desbloquear(){
         this.bloqueada = false
@@ -71,3 +72,4 @@ caja.conCajaDesbloqueada(saludar)
 caja.conCajaDesbloqueada(saludarConError)
 
 //Ejercicio 
+
